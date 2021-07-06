@@ -19,7 +19,7 @@ pipeline {
       }
       stage('Build') {
          steps {
-            bat 'echo No build required for Webapp.'
+            bat "echo No build required for Webapp $REPOSITORY_TAG."
          }
       }
 
