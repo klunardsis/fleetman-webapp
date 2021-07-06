@@ -19,13 +19,13 @@ pipeline {
       }
       stage('Build') {
          steps {
-            bat 'echo No build required for Webapp $REPOSITORY_TAG.'
+            bat "echo No build required for Webapp $REPOSITORY_TAG."
          }
       }
 
       stage('Build and Push Image') {
          steps {
-            bat "docker image build -t  ${REPOSITORY_TAG}"
+            bat "docker image build -t  $REPOSITORY_TAG"
          }
       }
 
