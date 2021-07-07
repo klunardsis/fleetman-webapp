@@ -32,7 +32,7 @@ pipeline {
       stage('Deploy to Cluster') {
           steps {
              withKubeConfig([credentialsId: 'Jenkins_serviceAccount', serverUrl: 'https://kubernetes.docker.internal:6443']) {
-      sh 'kubectl get pods'
+      sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
        }
            //bat "kubectl apply -f deploy.yaml "
            //  bat "kubectl get pods"
