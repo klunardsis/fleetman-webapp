@@ -31,8 +31,8 @@ pipeline {
 
       stage('Deploy to Cluster') {
           steps {
-           // bat "kubectl apply -f - deploy.yaml "
-             bat "kubectl get pods"
+           bat "kubectl apply -f deploy.yaml "
+           //  bat "kubectl get pods"
           }
       }
    }
