@@ -31,7 +31,7 @@ pipeline {
 
       stage('Deploy to Cluster') {
           steps {
-            bat "kubectl apply -f - $WORKSPACE/deploy.yaml "
+            bat "kubectl apply -f - deploy.yaml "
           }
       }
    }
