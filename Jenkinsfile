@@ -31,7 +31,10 @@ pipeline {
 
       stage('Deploy to Cluster') {
           steps {
-           bat "kubectl apply -f deploy.yaml "
+             withKubeConfig([credentialsId: 'Jenkins_serviceAccount', serverUrl: 'https://kubernetes.docker.internal:6443']) {
+      bat "kubectl apply -f deploy.yaml'
+       }
+           //bat "kubectl apply -f deploy.yaml "
            //  bat "kubectl get pods"
           }
       }
