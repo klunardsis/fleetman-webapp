@@ -26,6 +26,7 @@ pipeline {
       stage('Build and Push Image') {
          steps {
             bat "docker image build -t  $REPOSITORY_TAG ."
+            bat "docker push $REPOSITORY_TAG"
          }
       }
 
