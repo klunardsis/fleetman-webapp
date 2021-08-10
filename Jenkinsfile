@@ -5,8 +5,11 @@ pipeline {
      // You must set the following environment variables
      // ORGANIZATION_NAME
      // YOUR_DOCKERHUB_USERNAME (it doesn't matter if you don't have one)
-     registryCredential = 'f6e9ff9f-af1a-4db6-b139-d4219cbf0d4e' 
      SERVICE_NAME = "fleetman-webapp"
+     imagename = "yenigul/hacicenkins"
+     registryCredential = 'f6e9ff9f-af1a-4db6-b139-d4219cbf0d4e'
+     dockerImage = '' 
+     
      REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${ORGANIZATION_NAME}-${SERVICE_NAME}:${BUILD_ID}"
    }
 
@@ -28,11 +31,10 @@ pipeline {
             bat "docker image build -t  $REPOSITORY_TAG ."
            // bat "docker push $REPOSITORY_TAG"
             script { 
-            docker.withRegistry( REPOSITORY_TAG, registryCredential ) { 
+            docker.withRegistry( '', registryCredential ) {
+            dockerImage.push("$BUILD_NUMBER")
+            dockerImage.push('latest')
 
-                        dockerImage.push() 
-
-                    }
                 } 
          }
       }
