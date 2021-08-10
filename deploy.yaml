@@ -1,24 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: webapp
   name: webapp
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app: webapp
-  template:
+  replicas: 1
+  template: # template for the pods
     metadata:
       labels:
         app: webapp
     spec:
       containers:
-      - image: ${REPOSITORY_TAG}
-        name: webapp 
-        ports:
-        - containerPort: 30
+      - name: webapp
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: production-microservice
+        image: ${REPOSITORY_TAG}
+        imagePullPolicy: Never
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
 ---
 apiVersion: v1
 kind: Service
