@@ -32,9 +32,10 @@ pipeline {
            // bat "docker push $REPOSITORY_TAG"
             script { 
             docker.withRegistry( '', registryCredential ) {
-            dockerImage.push("$BUILD_NUMBER")
-            dockerImage.push('latest')
-
+            def customImage = docker.build("$REPOSITORY_TAG")
+            customImage.push()
+           
+            
                 } 
          }
       }
