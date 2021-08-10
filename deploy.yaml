@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - image: ${REPOSITORY_TAG}
-        name: webapp
+        name: webapp 
         ports:
         - containerPort: 30
