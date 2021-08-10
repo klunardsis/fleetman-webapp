@@ -38,7 +38,7 @@ pipeline {
                 } 
          }
       }
-
+      }
       stage('Deploy to Cluster') {
           steps {
              withKubeConfig([credentialsId: 'Jenkins_serviceAccount', serverUrl: 'http://127.0.0.1:57086/']) {
