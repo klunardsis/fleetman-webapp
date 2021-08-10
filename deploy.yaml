@@ -19,6 +19,7 @@ spec:
           value: production-microservice
         image: ${REPOSITORY_TAG}
         imagePullPolicy: IfNotPresent
+      restartPolicy: Always
         readinessProbe:
           httpGet:
             path: /
