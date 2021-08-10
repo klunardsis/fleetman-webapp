@@ -5,7 +5,7 @@ pipeline {
      // You must set the following environment variables
      // ORGANIZATION_NAME
      // YOUR_DOCKERHUB_USERNAME (it doesn't matter if you don't have one)
-     
+     registryCredential = 'f6e9ff9f-af1a-4db6-b139-d4219cbf0d4e' 
      SERVICE_NAME = "fleetman-webapp"
      REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${ORGANIZATION_NAME}-${SERVICE_NAME}:${BUILD_ID}"
    }
@@ -26,7 +26,12 @@ pipeline {
       stage('Build and Push Image') {
          steps {
             bat "docker image build -t  $REPOSITORY_TAG ."
-            bat "docker push $REPOSITORY_TAG"
+           // bat "docker push $REPOSITORY_TAG"
+            docker.withRegistry( REPOSITORY_TAG, registryCredential ) { 
+
+                        dockerImage.push() 
+
+                    }
          }
       }
 
