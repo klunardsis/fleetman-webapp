@@ -27,11 +27,13 @@ pipeline {
          steps {
             bat "docker image build -t  $REPOSITORY_TAG ."
            // bat "docker push $REPOSITORY_TAG"
+            script { 
             docker.withRegistry( REPOSITORY_TAG, registryCredential ) { 
 
                         dockerImage.push() 
 
                     }
+                } 
          }
       }
 
