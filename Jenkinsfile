@@ -30,21 +30,23 @@ pipeline {
          steps {
           //  bat "docker image build -t  $REPOSITORY_TAG ."
            // bat "docker push $REPOSITORY_TAG"
-            script { 
+            bat "Image managment"
+       /*     script { 
             docker.withRegistry( '', registryCredential ) {
             def customImage = docker.build("$REPOSITORY_TAG")
             customImage.push()
            
             
                 } 
-         }
+         }*/
       }
       }
       stage('Deploy to Cluster') {
           steps {
-             withKubeConfig([credentialsId: 'Jenkins_serviceAccount', serverUrl: 'http://127.0.0.1:57086/']) {
-      sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
-       }
+      //       withKubeConfig([credentialsId: 'Jenkins_serviceAccount', serverUrl: 'http://127.0.0.1:57086/']) {
+             sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+    //   }
+             
            //bat "kubectl apply -f deploy.yaml "
            //  bat "kubectl get pods"
           }
