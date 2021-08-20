@@ -6,7 +6,7 @@ pipeline {
      // ORGANIZATION_NAME
      // YOUR_DOCKERHUB_USERNAME (it doesn't matter if you don't have one)
      SERVICE_NAME = "fleetman-webapp"
-     imagename = "yenigul/hacicenkins"
+     imagename = "yenigul/hacicenkins" 
      registryCredential = 'f6e9ff9f-af1a-4db6-b139-d4219cbf0d4e'
      dockerImage = '' 
      
