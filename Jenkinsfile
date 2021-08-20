@@ -30,7 +30,7 @@ pipeline {
          steps {
           //  bat "docker image build -t  $REPOSITORY_TAG ."
            // bat "docker push $REPOSITORY_TAG"
-            bat "Image managment"
+          //  bat "Image managment"
             script { 
             docker.withRegistry( '', registryCredential ) {
             def customImage = docker.build("$REPOSITORY_TAG")
